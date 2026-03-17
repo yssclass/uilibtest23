@@ -2134,52 +2134,45 @@ function syde:Init(library)
 		SubText = library.SubText or "Google";
 	}
 
-	local Minihome = ui.minihome
-    Minihome.info.fps.Visible = false --// hide mini home for closet purposes
-    Minihome.info.time.Visible = false
-    Minihome.info.Visible = false -- how the hell did i forget to hide the bg :sob:
-    Minihome.Visible = false --// im honestly not gonna read 8 thousand lines just for some fucking shitty minihome so we rape it all
+local Minihome = ui.minihome
 
-	local MinihomeData = {
-		QuickActions = library.QuickActions or false;
-	}
+local MinihomeData = {
+    QuickActions = library.QuickActions or false;
+}
 
-	-- FPS tracking
-	local lastTime = tick()
-	local frames = 0
+-- FPS tracking
+local lastTime = tick()
+local frames = 0
 
-	if mh then
-		rs = RunService.RenderStepped:Connect(function()
-			-- FPS
-			frames += 1
-			local now = tick()
+if false then
+    rs = RunService.RenderStepped:Connect(function()
+        -- FPS
+        frames += 1
+        local now = tick()
+        if now - lastTime >= 1 then
+            local fps = math.floor(frames / (now - lastTime))
+            lastTime = now
+            frames = 0
+            Minihome.info.fps.Text = fps .. " FPS"
+        end
+        -- Time → 8:45
+        local hour = tonumber(os.date("%I"))
+        Minihome.info.time.Text = hour .. os.date(":%M")
+    end)
+    
+    if MinihomeData.QuickActions == false then
+        ui.minihome.quick.Visible = false
+        ui.minihome:TweenSize(UDim2.new(0, 150, 0, 40), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.8, true)
+    end
+end
 
-			if now - lastTime >= 1 then
-				local fps = math.floor(frames / (now - lastTime))
-				lastTime = now
-				frames = 0
+if not uiclosed then
+    ui.minihome.open.quickfunc.interact.MouseButton1Click:Connect(function()
+        ToggleUI()
+    end)
+end
 
-				Minihome.info.fps.Text = fps .. " FPS"
-			end
-
-			-- Time → 8:45
-			local hour = tonumber(os.date("%I"))
-			Minihome.info.time.Text = hour .. os.date(":%M")
-		end)
-		
-
-		if MinihomeData.QuickActions == false then
-			ui.minihome.quick.Visible = false
-			ui.minihome:TweenSize(UDim2.new(0, 150, 0, 40), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.8, true)
-		end
-	end
-
-
-	if not uiclosed then
-		ui.minihome.open.quickfunc.interact.MouseButton1Click:Connect(function()
-			ToggleUI()
-		end)
-	end
+Minihome.Visible = false
 
 	--ui elements
 	top.title.Text = Data.Title
