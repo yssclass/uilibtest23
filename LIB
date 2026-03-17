@@ -2137,6 +2137,7 @@ function syde:Init(library)
 	local Minihome = ui.minihome
     Minihome.info.fps.Visible = false --// hide mini home for closet purposes
     Minihome.info.time.Visible = false
+    Minihome.info.Visible = false -- how the hell did i forget to hide the bg :sob:
 
 	local MinihomeData = {
 		QuickActions = library.QuickActions or false;
