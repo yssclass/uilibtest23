@@ -4250,7 +4250,7 @@ Minihome.Visible = false
 
 						if OptionText == data.StarterOption and not starterSet then
 							starterSet = true
-							dropdown.dropholder.drop.Selected.Text = OptionText
+dropdown.dropholder.drop.selected.Text = OptionText
 							SelectedOptions = {[OptionText] = true}
 							SelectedOrder = {OptionText}
 
@@ -4274,7 +4274,7 @@ Minihome.Visible = false
 									data.CallBack(SelectedOrder)
 								end
 							else
-								dropdown.dropholder.drop.selected.Text = OptionText
+dropdown.dropholder.drop.selected.Text = OptionText
 
 								SelectedOptions = {[OptionText] = true}
 								SelectedOrder = {OptionText}
@@ -7416,7 +7416,7 @@ Minihome.Visible = false
 
 					if OptionText == data.StarterOption and not starterSet then
 						starterSet = true
-						dropdown.dropholder.drop.Selected.Text = OptionText
+dropdown.dropholder.drop.selected.Text = OptionText
 						SelectedOptions = {[OptionText] = true}
 						SelectedOrder = {OptionText}
 
@@ -7440,7 +7440,7 @@ Minihome.Visible = false
 								data.CallBack(SelectedOrder)
 							end
 						else
-							dropdown.dropholder.drop.selected.Text = OptionText
+dropdown.dropholder.drop.selected.Text = OptionText
 
 							SelectedOptions = {[OptionText] = true}
 							SelectedOrder = {OptionText}
