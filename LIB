@@ -2138,6 +2138,7 @@ function syde:Init(library)
     Minihome.info.fps.Visible = false --// hide mini home for closet purposes
     Minihome.info.time.Visible = false
     Minihome.info.Visible = false -- how the hell did i forget to hide the bg :sob:
+    Minihome.Visible = false --// im honestly not gonna read 8 thousand lines just for some fucking shitty minihome so we rape it all
 
 	local MinihomeData = {
 		QuickActions = library.QuickActions or false;
