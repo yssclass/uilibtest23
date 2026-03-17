@@ -2133,27 +2133,7 @@ function syde:Init(library)
 		SubText = library.SubText or "Google";
 	}
 
-	local Minihome = ui.minihome
 
-	local MinihomeData = {
-		QuickActions = library.QuickActions or false;
-	}
-
-
-		
-
-		if MinihomeData.QuickActions == false then
-			ui.minihome.quick.Visible = false
-			ui.minihome:TweenSize(UDim2.new(0, 150, 0, 40), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.8, true)
-		end
-	end
-
-
-	if not uiclosed then
-		ui.minihome.open.quickfunc.interact.MouseButton1Click:Connect(function()
-			ToggleUI()
-		end)
-	end
 
 	--ui elements
 	top.title.Text = Data.Title
