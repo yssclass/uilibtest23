@@ -24,7 +24,7 @@ if update then
 	local updategui = game:GetObjects("rbxassetid://122225389943465")[1]
 	updategui.Parent = coregui
 
-	local cord = '/nKzZXFXkFr'
+	local cord = '/GzumVvz3QM'
 
 	task.wait(0.5)
 	updategui.Enabled = true
@@ -880,6 +880,7 @@ do
 
 	function syde:Load(Config)
 		task.wait(1)
+		print('[SYED] Loader Loaded')
 		local LOADER = Loader
 		LOADER.Enabled = true
 		LOADER.Parent = coregui
@@ -1133,7 +1134,7 @@ do
 				end)
 
 				if not success then
-					warn("File write/read blocked or failed:", err)
+					warn("[SYDE] File write/read blocked or failed:", err)
 				end
 			end
 
@@ -1165,7 +1166,7 @@ do
 			end)
 
 			if not successLibrary or not Library then
-				warn("Failed to load Library.")
+				warn("[SYDE] Failed to load Library.")
 				return
 			end
 
@@ -1212,15 +1213,15 @@ do
 						makefolder(discordFolder)
 					end)
 					if folderSuccess then
-						print("Created folder at:", discordFolder)
+						print("[SYDE] Created DiscordInvites folder at:", discordFolder)
 					else
-						warn("Failed to create folder:", folderErr)
+						warn("[SYDE] Failed to create DiscordInvites folder:", folderErr)
 					end
 				end
 
 				local shouldPrompt = true
 				if isfile and discordConfig.RememberJoins and isfile(inviteFilePath) then
-					print("invite '" .. inviteCode .. "' already joined = true")
+					print("[SYDE] Discord invite '" .. inviteCode .. "' already joined. Skipping prompt.")
 					shouldPrompt = false
 				end
 
@@ -1245,23 +1246,23 @@ do
 						end)
 
 						if reqSuccess then
-							print("joined", inviteCode)
+							print("[SYDE] Discord invite sent successfully to:", inviteCode)
 						else
-							warn("failed to fetch discord invite:", reqErr)
+							warn("[SYDE] Failed to send Discord invite:", reqErr)
 						end
 					else
-						warn("function not available — cannot send discord invite.")
+						warn("[SYDE] Request function not available — cannot send Discord invite.")
 					end
 
 					if discordConfig.RememberJoins then
 						local writeSuccess, writeErr = pcall(function()
-							writefile(inviteFilePath, "joined Discord via invite '" .. inviteCode .. "' at " .. os.date())
+							writefile(inviteFilePath, "Joined Discord via invite '" .. inviteCode .. "' at " .. os.date())
 						end)
 
 						if writeSuccess then
-							print("invite join for:", inviteCode)
+							print("[SYDE] Logged Discord invite join for:", inviteCode)
 						else
-							warn("failed to write join log for invite:", writeErr)
+							warn("[SYDE] Failed to write join log for invite:", writeErr)
 						end
 					end
 				end
@@ -2133,7 +2134,18 @@ function syde:Init(library)
 		SubText = library.SubText or "Google";
 	}
 
+		if MinihomeData.QuickActions == false then
+			ui.minihome.quick.Visible = false
+			ui.minihome:TweenSize(UDim2.new(0, 150, 0, 40), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.8, true)
+		end
+	end
 
+
+	if not uiclosed then
+		ui.minihome.open.quickfunc.interact.MouseButton1Click:Connect(function()
+			ToggleUI()
+		end)
+	end
 
 	--ui elements
 	top.title.Text = Data.Title
@@ -4787,6 +4799,7 @@ function syde:Init(library)
 
 		local a = settings:inittab({Title = 'Theme'})
 		local b = settings:inittab({Title = 'Privacy'})
+		local c = settings:inittab({Title = 'Info'})
 
 		a:Keybind({
 			Title = 'Toggle UI',
