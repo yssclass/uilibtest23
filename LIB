@@ -4787,7 +4787,6 @@ function syde:Init(library)
 
 		local a = settings:inittab({Title = 'Theme'})
 		local b = settings:inittab({Title = 'Privacy'})
-		local c = settings:inittab({Title = 'Info'})
 
 		a:Keybind({
 			Title = 'Toggle UI',
