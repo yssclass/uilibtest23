@@ -2139,28 +2139,7 @@ function syde:Init(library)
 		QuickActions = library.QuickActions or false;
 	}
 
-	-- FPS tracking
-	local lastTime = tick()
-	local frames = 0
 
-	if mh then
-		rs = RunService.RenderStepped:Connect(function()
-			-- FPS
-			frames += 1
-			local now = tick()
-
-			if now - lastTime >= 1 then
-				local fps = math.floor(frames / (now - lastTime))
-				lastTime = now
-				frames = 0
-
-				Minihome.info.fps.Text = fps .. " FPS"
-			end
-
-			-- Time → 8:45
-			local hour = tonumber(os.date("%I"))
-			Minihome.info.time.Text = hour .. os.date(":%M")
-		end)
 		
 
 		if MinihomeData.QuickActions == false then
